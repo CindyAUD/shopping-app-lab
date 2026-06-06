@@ -23,10 +23,10 @@
     "jest": "^30.4.1",
     "jest-environment-jsdom": "^30.4.1"
   },
-  "jest": {
+    "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "@testing-library/jest-dom"
+      "<rootDir>/src/setupTests.js"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
