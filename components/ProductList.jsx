@@ -34,7 +34,7 @@ function ProductList({ products, category, setCategory, cartItems, onAddToCart }
       </div>
 
       {filtered.length === 0 && (
-        <p className="no-products">No products in this category.</p>
+        <p className="no-products">No products available.</p>
       )}
     </section>
   );
