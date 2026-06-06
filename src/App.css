@@ -1,0 +1,320 @@
+/* ─── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --radius: 14px;
+  --transition: 0.25s ease;
+}
+
+.light {
+  --bg:          #f5f0eb;
+  --surface:     #ffffff;
+  --surface2:    #fdf8f3;
+  --border:      #e8ddd0;
+  --text:        #1a1410;
+  --text-muted:  #7a6a5a;
+  --accent:      #d4622a;
+  --accent-light:#f9e8df;
+  --green:       #2d7a50;
+  --green-light: #dcf0e6;
+  --shadow:      0 4px 24px rgba(0,0,0,0.08);
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
+}
+
+.dark {
+  --bg:          #12110f;
+  --surface:     #1e1c18;
+  --surface2:    #252320;
+  --border:      #2e2b25;
+  --text:        #f0ebe3;
+  --text-muted:  #8a7f72;
+  --accent:      #e8753d;
+  --accent-light:#2a1a10;
+  --green:       #4dab73;
+  --green-light: #0e2318;
+  --shadow:      0 4px 24px rgba(0,0,0,0.4);
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  min-height: 100vh;
+}
+
+/* ─── App Shell ─────────────────────────────────────────────── */
+.app { min-height: 100vh; }
+
+/* ─── Header ────────────────────────────────────────────────── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.header-brand { display: flex; align-items: center; gap: 10px; }
+.header-logo  { font-size: 1.6rem; }
+.header-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+
+.header-actions { display: flex; align-items: center; gap: 14px; }
+
+.cart-count {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* ─── Toggle Button ─────────────────────────────────────────── */
+.toggle-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  transition: background var(--transition), color var(--transition);
+}
+.toggle-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ─── Main Layout ───────────────────────────────────────────── */
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .app-main { grid-template-columns: 1fr; }
+}
+
+/* ─── Filter Bar ────────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.filter-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.filter-select {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 36px 8px 14px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+.filter-select:focus { outline: none; border-color: var(--accent); }
+
+/* ─── Product Grid ──────────────────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ─── Product Card ──────────────────────────────────────────── */
+.product-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  transition: border-color var(--transition), box-shadow var(--transition),
+              background var(--transition), transform 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+.product-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.product-card.in-cart {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.product-emoji { font-size: 2.4rem; line-height: 1; }
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.product-category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+/* ─── Add to Cart Button ────────────────────────────────────── */
+.add-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity var(--transition), transform 0.1s ease;
+  width: 100%;
+}
+.add-btn:hover   { opacity: 0.88; }
+.add-btn:active  { transform: scale(0.97); }
+
+.in-cart-badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  border: 1.5px solid var(--green);
+  border-radius: 999px;
+  padding: 6px 14px;
+  width: 100%;
+  text-align: center;
+}
+
+.no-products {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+/* ─── Cart Sidebar ──────────────────────────────────────────── */
+.cart {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-left: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: background var(--transition), border-color var(--transition);
+  position: sticky;
+  top: 88px;
+}
+
+.cart-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text);
+  border-bottom: 1.5px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.cart-empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.cart-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-emoji { font-size: 1.2rem; }
+
+.cart-price {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.cart-total {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--border);
+  font-size: 1rem;
+  text-align: right;
+  color: var(--text);
+}
+.cart-total strong { color: var(--accent); font-size: 1.1rem; }
